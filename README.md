@@ -15,5 +15,5 @@ to compile for JS, and after compile for TS
 Now with those files, you can compile for TS
 
 ```bash
-protoc --plugin=protoc-gen-ts=/home/gabs/Documents/projetos/proxy-server-client/client-server/node_modules/.bin/protoc-gen-ts --ts_out=grpc_js:/home/gabs/Documents/projetos/proxy-server-client/client-server/src/protos ping.proto 
+protoc --plugin=protoc-gen-ts=/home/gabs/Documents/projetos/proxy-server-client/client-server/node_modules/.bin/protoc-gen-ts --ts_out=grpc_js:/home/gabs/Documents/projetos/proxy-server-client/client-server/protos ping.proto 
 ```
