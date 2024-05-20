@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "sh build.sh && npx tsc && node dist/server/app.js",
+    "server": "npm run build-proto && npx tsc && node dist/server/app.js",
+    "client": "npm run build-proto && npx tsc && node dist/client/app.js",
     "build-proto": "sh build.sh"
   },
   "keywords": [],

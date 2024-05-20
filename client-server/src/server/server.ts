@@ -6,8 +6,10 @@ import { Ping, Pong } from "../../protos/ping_pb.js";
 
 export class ServerPing implements IPingPongServer {
     ping(call: ServerUnaryCall<Ping, Pong>, callback: sendUnaryData<Pong>) {
+        const message = call.request.getMessage()
+        console.log(`Got message: ${message}`)
         const response = new Pong()
-        response.setMessage(`Response from Server: ${call.request.getMessage()}`)
+        response.setMessage(`Response from Server: ${message}`)
         callback(null, response)
     }
 

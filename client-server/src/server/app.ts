@@ -7,7 +7,7 @@ import {PingPongService} from "../../protos/ping_grpc_pb.js";
 const server = new grpc.Server()
 server.addService(PingPongService, new ServerPing())
 server.bindAsync(
-    '0.0.0.0:50051',
+    'localhost:50051',
     ServerCredentials.createInsecure(),
     (err, port) => {
       if (err) {

@@ -30,7 +30,7 @@ const grpc_js_1 = require("@grpc/grpc-js");
 const ping_grpc_pb_js_1 = require("../../protos/ping_grpc_pb.js");
 const server = new grpc.Server();
 server.addService(ping_grpc_pb_js_1.PingPongService, new server_js_1.ServerPing());
-server.bindAsync('0.0.0.0:50051', grpc_js_1.ServerCredentials.createInsecure(), (err, port) => {
+server.bindAsync('localhost:50051', grpc_js_1.ServerCredentials.createInsecure(), (err, port) => {
     if (err) {
         console.log(err);
     }

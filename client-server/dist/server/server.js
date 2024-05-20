@@ -5,8 +5,10 @@ const ping_pb_js_1 = require("../../protos/ping_pb.js");
 // grpc.handleUnaryCall<ping_pb.Ping, ping_pb.Pong>
 class ServerPing {
     ping(call, callback) {
+        const message = call.request.getMessage();
+        console.log(`Got message: ${message}`);
         const response = new ping_pb_js_1.Pong();
-        response.setMessage(`Response from Server: ${call.request.getMessage()}`);
+        response.setMessage(`Response from Server: ${message}`);
         callback(null, response);
     }
 }
