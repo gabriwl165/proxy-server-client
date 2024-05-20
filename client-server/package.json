@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "sh build.sh && npx tsc && node dist/server/app.js"
+    "dev": "sh build.sh && npx tsc && node dist/server/app.js",
+    "build-proto": "sh build.sh"
   },
   "keywords": [],
   "author": "",
