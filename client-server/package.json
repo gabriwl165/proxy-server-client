@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "commonjs",
   "scripts": {
-    "dev": "npx tsc && node dist/server/app.js"
+    "dev": "sh build.sh && npx tsc && node dist/server/app.js"
   },
   "keywords": [],
   "author": "",
