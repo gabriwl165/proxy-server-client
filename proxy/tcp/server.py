@@ -26,6 +26,8 @@ def handle_message(client_socket):
     username_length = client_socket.recv(10).decode('utf-8')
     if not username_length:
         client_socket.close()
+        index_closed_socket = sockets.index(client_socket)
+        del sockets[index_closed_socket]
         return
     username = client_socket.recv(int(username_length)).decode('utf-8')
     message_length = client_socket.recv(10).decode('utf-8')
@@ -44,6 +46,8 @@ while True:
             # users[sock] = username
             continue
         message = handle_message(sock)
+        if not message:
+            continue
         for client in sockets:
             if client in [sock, server_socket]:
                 continue
