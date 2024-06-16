@@ -23,18 +23,43 @@ async function main(clientSocket: net.Socket) {
 }
 
 const client = new net.Socket()
-client.connect(1234, '127.0.0.1', () => {
-    console.log('Connected')
-    main(client)
-})
 
-client.on('data', (data) => {
-    if (username) {
-        console.log(`\n${data}`)
-        process.stdout.write(`${username} > `)
-    }
-})
+function connect() {
+    client.connect(
+        1234,
+        "127.0.0.1",
+        () => {
+            console.log("Connected")
+            main(client)
+        }
+    )
 
-client.on('close', () => {
-    console.log('Connection closed')
-})
+    client.on("data", data => {
+        console.log("Received: " + data)
+    })
+
+    client.on("close", () => {
+        console.log("Connection closed")
+        reconnect()
+    })
+
+    client.on("end", () => {
+        console.log("Server Ended Connection Suddleny")
+        reconnect()
+    })
+
+    client.on("error", (err: Error) => {
+        console.log("Connection to Server not reached")
+    })
+}
+
+const reconnect = () => {
+    setTimeout(() => {
+        client.removeAllListeners()
+        connect()
+    }, 5000)
+}
+
+connect()
+
+

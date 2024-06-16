@@ -34,16 +34,30 @@ function main(clientSocket) {
     });
 }
 const client = new net_1.default.Socket();
-client.connect(1234, '127.0.0.1', () => {
-    console.log('Connected');
-    main(client);
-});
-client.on('data', (data) => {
-    if (username) {
-        console.log(`\n${data}`);
-        process.stdout.write(`${username} > `);
-    }
-});
-client.on('close', () => {
-    console.log('Connection closed');
-});
+function connect() {
+    client.connect(1234, "127.0.0.1", () => {
+        console.log("Connected");
+        main(client);
+    });
+    client.on("data", data => {
+        console.log("Received: " + data);
+    });
+    client.on("close", () => {
+        console.log("Connection closed");
+        reconnect();
+    });
+    client.on("end", () => {
+        console.log("Server Ended Connection Suddleny");
+        reconnect();
+    });
+    client.on("error", (err) => {
+        console.log("Connection to Server not reached");
+    });
+}
+const reconnect = () => {
+    setTimeout(() => {
+        client.removeAllListeners();
+        connect();
+    }, 5000);
+};
+connect();
